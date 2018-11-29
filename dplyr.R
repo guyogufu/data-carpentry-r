@@ -15,3 +15,23 @@ select(interviews, village:rooms)
 filter(interviews, village == "God")
 
 filter(interviews, village == "God", rooms > 2)
+
+# filter and select
+
+interviews2 <- filter(interviews, village == "God")
+
+interviews_god <- select(interviews2, no_membrs, years_liv)
+
+interviews_god
+
+# to avoid clutter, you can overwrite an object however, an error at a point affects all subsequent operations
+
+# Alternatively run the codes in one step
+
+interviews_god <- select(filter(interviews, village == "God"), no_membrs, years_liv)
+
+interviews_god
+
+#Piping dataset into filter works in a sequentila manner rather than from inside out like the code above
+
+interviews %>% filter(village == "God") %>% select(no_membrs, years_liv)
