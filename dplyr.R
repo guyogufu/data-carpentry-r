@@ -46,3 +46,15 @@ interviews %>% filter(memb_assoc == "yes") %>% select(affect_conflicts, liv_coun
 
 interviews <- interviews %>% mutate(people_per_room = no_membrs/rooms)
 
+# to group data by a variable in order to find some meaningful info about the diffrent categories
+# we can pipe by that variable
+
+interviews %>% group_by(village) %>% summarise(mean_no_membrs = mean(no_membrs))
+
+interviews %>% group_by(village) %>% filter(memb_assoc == "yes") %>% 
+  summarise(mean_no_membrs = mean(no_membrs))
+
+interviews %>% group_by(village, memb_assoc) %>% summarise(mean_no_membrs = mean(no_membrs),
+                                                           min_membrs = min(no_membrs))
+
+
