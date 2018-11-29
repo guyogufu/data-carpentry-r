@@ -35,3 +35,14 @@ interviews_god
 #Piping dataset into filter works in a sequentila manner rather than from inside out like the code above
 
 interviews %>% filter(village == "God") %>% select(no_membrs, years_liv)
+
+# Using pipes, subset the interviews data to include interviews where respondents 
+# were members of an irrigation association (memb_assoc) and retain only the columns 
+# affect_conflicts, liv_count, and no_meals
+
+interviews %>% filter(memb_assoc == "yes") %>% select(affect_conflicts, liv_count, no_meals)
+
+# mutate uses pipe to enable adding a variable/column to dataset i.e. interviews
+
+interviews <- interviews %>% mutate(people_per_room = no_membrs/rooms)
+
